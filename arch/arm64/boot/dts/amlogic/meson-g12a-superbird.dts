@@ -180,9 +180,9 @@
 		pinctrl-names="default";
 		pinctrl-0=<&superbird_rotary>;
 
-		gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_LOW>, 
+		gpios = <&gpio GPIOZ_8 GPIO_ACTIVE_LOW>,
 			<&gpio GPIOZ_9 GPIO_ACTIVE_LOW>;
-		
+
 		linux,axis = <6>; /* REL_HWHEEL */
 		rotary-encoder,encoding = "gray";
 		rotary-encoder,relative-axis;
@@ -347,7 +347,7 @@
 
 	superbird_rotary: superbird_rotary {
 		mux {
-			groups = "GPIOZ_7", 
+			groups = "GPIOZ_7",
 				"GPIOZ_8",
 				"GPIOZ_9";
 			bias-disable;
@@ -448,14 +448,14 @@
 		};
 	};
 
-	// superbird_mfi_i2c_pins: superbird_mfi_i2c_pins {
-	// 	mux {
-	// 		groups = "i2c3_sda_a", "i2c3_sck_a";
-	// 		function = "i2c3";
-	// 		bias-disable;
-	// 		drive-strength = <2>;
-	// 	};
-	// };
+	superbird_mfi_i2c_pins: superbird_mfi_i2c_pins {
+		mux {
+			groups = "i2c3_sda_a", "i2c3_sck_a";
+			function = "i2c3";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
 
 	superbird_disabled_pins_c: superbird_disabled_pins_c {
 		mux {
@@ -577,7 +577,7 @@
 		<GIC_SPI 94 IRQ_TYPE_EDGE_RISING>;
 
 	pinctrl-names="default";
-	pinctrl-0=<&i2c2_sda_z_pins>, <&i2c2_sck_z_pins>, 
+	pinctrl-0=<&i2c2_sda_z_pins>, <&i2c2_sck_z_pins>,
 		<&superbird_prox_gpio>, <&superbird_imu_gpio>;
 
 	clock-frequency= <400000>;
@@ -586,11 +586,11 @@
 	// 	compatible = "st,lis2dh12-accel";
 	// 	reg = <0x18>;
 	// };
-	
+
 	// max20332@35 {
 	// 	reg = <0x35>;
 	// };
-	
+
 	tmd27721@39 {
 		compatible = "amstaos,tmd2772";
 		reg = <0x39>;
@@ -599,17 +599,17 @@
 	};
 };
 
-// &i2c3 {
-// 	status = "okay";
-// 	pinctrl-names="default";
-// 	pinctrl-0=<&superbird_mfi_i2c_pins>;
-// 	clock-frequency= <400000>;
+&i2c3 {
+	status = "okay";
+	pinctrl-names="default";
+	pinctrl-0=<&superbird_mfi_i2c_pins>;
+	clock-frequency= <400000>;
 
-// 	mfi@10 {
-// 		compatible = "apple_mfi_auth";
-// 		reg = <0x10>;		
-// 	};
-// };
+	mfi@10 {
+		compatible = "apple_mfi_auth";
+		reg = <0x10>;
+	};
+};
 
 /* efuse nvmem */
 &efuse {
